@@ -7,11 +7,13 @@ blog.item : nested state of state app.blog, display blog-item component with edi
 import blogItem from './blogItem/blogItem'
 import blogItemMenu from './blogItem/blogItemMenu'
 import blogList from './blogList/blogList'
+import blogBookmarks from './bookmarks/blogBookmarks'
 
 let blogModule = angular.module('app.blog', [])
     .component('blogItem', blogItem)
     .component('blogItemMenu', blogItemMenu)
     .component('blogList', blogList)
+    .component('blogBookmarks', blogBookmarks)
     .config(['$stateProvider', ($stateProvider, $urlRouterProvider, $locationProvider) => {
         /*
           Define a state with name 'blog' this state is abstract and url is empty (root of application)
@@ -30,6 +32,10 @@ let blogModule = angular.module('app.blog', [])
             .state('blog.item', {
                 url: '/:id',
                 template: '<blog-item editable="true"></blog-item>'
+            })
+            .state('blog.bookmarks', {
+                url: '/bookmarks',
+                template: '<blog-bookmarks></blog-bookmarks>'
             })
     }])
     .name

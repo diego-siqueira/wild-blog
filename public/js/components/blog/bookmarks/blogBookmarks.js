@@ -1,9 +1,6 @@
-/*
-Create Angular component blogList into module app.blog
-*/
-let blogList = {
-    templateUrl: 'js/components/blog/blogList/blogList.html',
-    controller: ['UsersService', 'PostsService', '$stateParams', function(UsersService, PostsService, $stateParams) {
+let blogBookmarks = {
+    templateUrl: 'js/components/blog/bookmarks/blogBookmarks.html',
+    controller: ['UsersService', 'PostsService', function(UsersService, PostsService) {
         'use strict'
         // Define startIndex variable with default value 3
         this.startIndex = 3
@@ -18,13 +15,7 @@ let blogList = {
 
         // Call get() method from PostsService.
         // When this request receive response we affect response data to this controller variable posts
-        PostsService.get().then((res) => {
-            if($stateParams.id === '_bookmarked'){
-                this.posts = res.data.filter((id_bkm)=>{
-                    return res.data._id == this.user.bookmarks
-                })
-                console.log(this.posts)
-            }
+        PostsService.getBookmarks().then((res) => {
             this.posts = res.data
         }).catch((err) => {
             this.posts = [{
@@ -43,4 +34,4 @@ let blogList = {
     }]
 }
 
-export default blogList
+export default blogBookmarks

@@ -7,6 +7,7 @@ With this extended class, this class obtain all methodd from parent class
 let Controller = require('./Controller');
 // Require model (schema) use with this controller
 let Post = require('../models/post')
+let User = require('../models/user')
 
 class PostsController extends Controller {
 
@@ -28,7 +29,7 @@ class PostsController extends Controller {
   findById(req, res, next) {
     // Get a unique document by request param, this param need to be id
     this.model.findById(req.params.id, (err, document) => {
-      if (err){
+      if (err) {
         next(err)
       }
       if (document.published == false) {
@@ -42,11 +43,19 @@ class PostsController extends Controller {
   findBookmarked(req, res, next) {
     // Get all documents and filter with queries string (req.query : ex. http://domain.ext/api/?query=string)
     this.model.find({
-      bookmark: true
+      published: true
     }, function(err, documents) {
+      console.log('BEFORE', documents)
+      /*documents = documents.filter((id_posts) => {
+        return id_posts == User.bookmarks
+      })
+      console.log('AFTER', documents)*/
       res.json(documents)
     })
   }
+
+
+
 
 }
 
