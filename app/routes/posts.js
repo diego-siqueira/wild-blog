@@ -19,6 +19,11 @@ module.exports = (app) => {
         return ctrl.findById(req, res, next)
     })
 
+    //GET (for READ) method with request params id
+    app.get('/posts/bookmarked', (req, res, next) => {
+        return ctrl.findBookmarked(req, res, next)
+    })
+
     //POST (for CREATE) method
     app.post('/posts', (req, res, next) => {
         return ctrl.create(req, res, next)
