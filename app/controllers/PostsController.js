@@ -32,7 +32,7 @@ class PostsController extends Controller {
         next(err)
       }
       if (document.published == false) {
-        res.redirect('/#!/posts')
+        res.status(401).send("Article not published yet!");
       } else {
         res.json(document)
       }
