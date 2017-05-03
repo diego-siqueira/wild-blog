@@ -83,21 +83,22 @@ let blogItem = {
             }
         }
 
-        this.isFav = () => {
-            if (!this.post) return
-            return (this.user.bookmarks.find((post_id) => post_id.id === this.post._id))
+        this.isFav = (post_id) => {
+            if (!this.user) return
+            return this.user.bookmarks.find((post_id) => post_id === this.post._id)
+           
         }
 
         this.addOrRemoveToBookmark = () => {
             // Try to find post in bookmarks
-            let postFound = this.user.bookmarks.find((post) => post.id === this.post._id)
+            let postFound = this.user.bookmarks.find((post) => post === this.post._id)
 
             if (!postFound) {
                 //Not found
                 this.user.bookmarks.push(this.post._id)
             } else {
                 //Found
-                this.user.bookmark = this.user.bookmarks.filtered((post_id) => {
+                this.user.bookmark = this.user.bookmarks.filter((post_id) => {
                     return post_id !== this.post._id
                 })
             }
