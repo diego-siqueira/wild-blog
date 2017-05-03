@@ -4,11 +4,6 @@ let navbar = {
   templateUrl: 'js/components/common/navbar.html',
   controller: ['UsersService', '$state', '$interval', function(UsersService, $state, $interval) {
     'use strict'
-
-    $interval(() => {
-      this.clock = moment().format('MMMM do YYYY, h:mm:ss a');
-    }, 1000)
-
     angular.extend(this, {
       $onInit() {
         UsersService.getCurrent().then((user) => {
@@ -26,6 +21,13 @@ let navbar = {
       }
 
     })
+
+
+    $interval(() => {
+      this.clock = moment().format('MMMM do YYYY, h:mm:ss a');
+    }, 1000)
+
+    
   }]
 }
 
