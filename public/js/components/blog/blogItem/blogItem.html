@@ -19,11 +19,12 @@
       </div>
       <!-- Display textarea for editing post.content only if editable and in edit mode -->
       <textarea class="materialize-textarea" ng-if="($ctrl.editable && $ctrl.editMode)" ng-model="$ctrl.post.content" placeholder="Content"></textarea>
-      <div class="switch">
+      <div ng-if="($ctrl.editable && $ctrl.editMode)" class="switch">
         <label>
           Off
-          <input type="checkbox">
-          <span class="lever"></span> On
+          <input type="checkbox" ng-model="$ctrl.post.published" data-ng-value="true">
+          <span class="lever"></span> 
+          On
         </label>
       </div>
     </div>

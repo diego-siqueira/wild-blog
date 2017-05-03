@@ -57,6 +57,9 @@ let blogItem = {
         // Create save function.
         // If you want to use in view you can call with $ctrl.save()
         this.save = () => {
+            if(this.post && (this.post.published == "undefined" || this.post.published == null)){
+                this.post.published = false;
+            }
             // Call save method form PostsService with post
             PostsService.save(this.post).then((res) => {
                 // Change editMode value to false
